@@ -12,7 +12,6 @@ static int io_append(list_t * ls, char * name)
 	}
 	else {
 		ls->tail->next = calloc(1,sizeof(node_t));
-		ls->tail->next->prev = ls->tail;
 		ls->tail = ls->tail->next;
 	}
 
@@ -58,5 +57,11 @@ node_t * io_next(list_t * ls)
 	}
 
 	return tmp;
+}
+
+void io_free(node_t * n)
+{
+	free(n->filename);
+	free(n);
 }
 
