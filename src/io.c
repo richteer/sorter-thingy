@@ -39,6 +39,8 @@ list_t * io_load(char * dirname)
 		io_append(ls, d->filename);
 	}
 
+	closedir(dirp);
+
 	return ls;
 }
 
