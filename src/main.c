@@ -18,7 +18,7 @@ static int parse_args(args_t * args, int argc, char ** argv)
 	for (i = 1; i < argc; ++i) {
 		switch(argv[i][1]) {
 			case 't': args->thrs = atoi(argv[++i]); break;
-			case 'd': args->idir = argv[++i];       break;
+			case 'i': args->idir = argv[++i];       break;
 			case 'o': args->odir = argv[++i];       break;
 
 			default: fprintf(stderr, "Unknown option '%s'\n", argv[i]); ret = 1; break;
@@ -26,7 +26,7 @@ static int parse_args(args_t * args, int argc, char ** argv)
 	}
 
 	if ((args->idir == NULL) || (args->odir == NULL)) {
-		fprintf(stderr, "Must specify at both an input directory (-d) and an output directory (-o)\n");
+		fprintf(stderr, "Must specify at both an input directory (-i) and an output directory (-o)\n");
 		ret = 2;
 	} 
 	else if (!strcmp(args->idir,args->odir)) {

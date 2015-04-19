@@ -52,7 +52,6 @@ static int sort_join(fdata_t * d, char ** buffer, size_t size)
 	char * c;
 	char * temp; 
 
-	printf("getting here\n");
 	temp = malloc(d->size);
 
 	j = 0;
@@ -76,12 +75,7 @@ int sort_do(fdata_t * d)
 
 	sort_split(d, &buffer, &size);
 	qsort(buffer, size, sizeof(char*), sort_compare);
-
-	int i;
-	for (i = 0; i < size; i++) {
-		printf("%s\n", buffer[i]);
-	}
-
 	sort_join(d, buffer, size);
+
 	return 0;
 }
