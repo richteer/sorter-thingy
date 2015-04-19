@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "file.h"
 
 fdata_t * file_open(char * fname)
@@ -8,6 +9,9 @@ fdata_t * file_open(char * fname)
 	FILE * f;
 
 	d = malloc(sizeof(fdata_t));	
+
+	d->name = calloc(1, strlen(fname));
+	strcpy(d->name, fname);
 
 	f = fopen(fname, "r");
 
