@@ -5,7 +5,7 @@ typedef struct node_s {
 	struct node_s * next;
 	struct node_s * prev;
 	char * filename;
-}
+} node_t;
 
 typedef struct list_s {
 	node_t * head;

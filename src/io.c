@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <dirent.h>
+#include "io.h"
 
 static int io_append(list_t * ls, char * name)
 {
@@ -10,7 +11,7 @@ static int io_append(list_t * ls, char * name)
 		ls->head = ls->tail = calloc(1,sizeof(node_t));
 	}
 	else {
-		ls->tail->next = calloc(1,sizeof(node)_t);
+		ls->tail->next = calloc(1,sizeof(node_t));
 		ls->tail->next->prev = ls->tail;
 		ls->tail = ls->tail->next;
 	}
@@ -25,7 +26,7 @@ list_t * io_load(char * dirname)
 {
 	list_t * ls;
 	DIR * dirp;
-	struct dirent d;
+	struct dirent * d;
 
 	ls = calloc(1, sizeof(list_t));
 
@@ -35,8 +36,9 @@ list_t * io_load(char * dirname)
 		return NULL;
 	}
 
-	while (d = readdir(dirp)) {
-		io_append(ls, d->filename);
+	while ((d = readdir(dirp))) {
+		if ('.' == d->d_name[0]) continue; // Ignore dotfiles
+		io_append(ls, d->d_name);
 	}
 
 	closedir(dirp);
@@ -51,7 +53,7 @@ node_t * io_next(list_t * ls)
 
 	tmp = ls->head;
 
-	if (!tmp) {
+	if (tmp) {
 		ls->head = ls->head->next;
 	}
 
