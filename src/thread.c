@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include "io.h"
 #include "file.h"
+#include "sort.h"
 
 typedef struct {
 	sem_t * sem;
@@ -28,7 +29,7 @@ static void thread_do(targs_t * args)
 		}
 
 		d = file_open(n->filename);
-		//sort_do(d);
+		sort_do(d);
 		file_write(args->odir, d);
 		file_free(d);
 

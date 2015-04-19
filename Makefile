@@ -5,7 +5,7 @@ CC      = clang
 CFLAGS  = -c -g
 LDFLAGS = -lpthread
 
-SRCS := main.c io.c thread.c file.c
+SRCS := main.c io.c thread.c file.c sort.c
 DEPS := $(addprefix dep/,$(patsubst %.c,%.d,$(SRCS)))
 OBJS := $(addprefix obj/,$(patsubst %.c,%.o,$(SRCS)))
 SRCS := $(addprefix src/,$(SRCS))
