@@ -16,9 +16,9 @@ static int parse_args(args_t * args, int argc, char ** argv)
 
 	for (i = 1; i < argc; ++i) {
 		switch(argv[i][1]) {
-			case 't': args->thrs = atoi(argv[i]); break;
-			case 'd': args->idir = argv[i];       break;
-			case 'o': args->odir = argv[i];       break;
+			case 't': args->thrs = atoi(argv[++i]); break;
+			case 'd': args->idir = argv[++i];       break;
+			case 'o': args->odir = argv[++i];       break;
 
 			default: fprintf(stderr, "Unknown option '%s'\n", argv[i]); ret = 1; break;
 		}
