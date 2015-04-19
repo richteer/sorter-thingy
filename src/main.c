@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "thread.h"
 
 typedef struct {
 	char * idir;
@@ -48,7 +49,7 @@ int main(int argc, char ** argv)
 		return 1;
 	}
 
-	// Do the thing here
+	thread_main(args.idir, args.odir, args.thrs);
 
 	return 0;
 }

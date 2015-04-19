@@ -2,10 +2,10 @@
 SHELL   = /bin/bash
 TARGET  = sorter
 CC      = clang
-CFLAGS  = -c
+CFLAGS  = -c -g
 LDFLAGS = -lpthread
 
-SRCS := main.c
+SRCS := main.c io.c thread.c
 DEPS := $(addprefix dep/,$(patsubst %.c,%.d,$(SRCS)))
 OBJS := $(addprefix obj/,$(patsubst %.c,%.o,$(SRCS)))
 SRCS := $(addprefix src/,$(SRCS))
