@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <semaphore.h>
+#include <unistd.h>
 #include "io.h"
 #include "file.h"
 
@@ -51,6 +52,8 @@ int thread_main(char * idir, char * odir, int thrs)
 	args.ls = io_load(idir);
 	args.odir = odir;
 
+	chdir(odir);
+
 	for (i = 0; i < thrs; i++) {
 		pthread_create(&threads[i], NULL, (void*(*)(void*))thread_do, (void*) &args);
 	}
@@ -58,6 +61,8 @@ int thread_main(char * idir, char * odir, int thrs)
 	for (i = 0; i < thrs; i++) {
 		pthread_join(threads[i], NULL);
 	}
+
+	chdir("..");
 
 	free(threads);
 
