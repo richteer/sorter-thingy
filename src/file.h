@@ -8,7 +8,7 @@ typedef struct {
 } fdata_t;
 
 fdata_t * file_open(char * fname);
-int file_write(fdata_t * d);
+int file_write(char * odir, fdata_t * d);
 void file_free(fdata_t * d);
 
 #endif

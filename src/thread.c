@@ -29,7 +29,7 @@ static void thread_do(targs_t * args)
 
 		d = file_open(n->filename);
 		//sort_do(d);
-		file_write(d);
+		file_write(args->odir, d);
 		file_free(d);
 
 		io_free(n);
@@ -52,7 +52,7 @@ int thread_main(char * idir, char * odir, int thrs)
 	args.ls = io_load(idir);
 	args.odir = odir;
 
-	chdir(odir);
+	chdir(idir);
 
 	for (i = 0; i < thrs; i++) {
 		pthread_create(&threads[i], NULL, (void*(*)(void*))thread_do, (void*) &args);

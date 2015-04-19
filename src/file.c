@@ -23,8 +23,16 @@ fdata_t * file_open(char * fname)
 	return d;
 }
 
-int file_write(fdata_t * d)
+int file_write(char * odir, fdata_t * d)
 {
+	FILE * f;
+	char foo[256] = {0};
+
+	sprintf(foo, "../%s/%s.sorted", odir, d->name);
+
+	f = fopen(foo, "w");
+	fwrite(d->data, 1, d->size, f);
+	fclose(f);
 
 	return 0;
 }
