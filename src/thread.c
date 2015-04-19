@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include "io.h"
-
+#include "file.h"
 
 typedef struct {
 	sem_t * sem;
@@ -15,6 +15,7 @@ typedef struct {
 static void thread_do(targs_t * args)
 {	
 	node_t * n;
+	fdata_t * d;
 
 	while (1) {
 		sem_wait(args->sem);
@@ -25,7 +26,12 @@ static void thread_do(targs_t * args)
 			break; // No files left.
 		}
 
-		// Do the sort
+		d = file_open(n->filename);
+		//sort_do(d);
+		file_write(d);
+		file_free(d);
+
+		io_free(n);
 
 	}
 
