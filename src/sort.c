@@ -10,7 +10,7 @@ static int sort_compare(const void * a, const void * b)
 	int i = 0;
 
 	while (1) {
-		if ((*as)[i] - (*bs)[i]) return (*as[i] - (*bs)[i]);
+		if ((*as)[i] - (*bs)[i]) return ((*as)[i] - (*bs)[i]);
 		else if ((*as)[i] == '\0') return 0;
 		i++;
 	}
